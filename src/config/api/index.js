@@ -66,12 +66,32 @@ const api = {
 
   post: (path, data) => {
     if (path.match(/lists/g)) {
+      if (typeof data.name === 'undefined') {
+        return apiResponse({
+          ok: false,
+          problem: 'CLIENT_ERROR',
+          data: {
+            error: 'Missing required attribute for new List. Make sure the list has name attribute.'
+          }
+        })
+      }
+
       const list = createList(data)
 
       fakeDB.lists.push(list)
 
       return apiResponse({data: { list }})
     } else {
+      if (typeof data.text === 'undefined' || typeof data.listID === 'undefined') {
+        return apiResponse({
+          ok: false,
+          problem: 'CLIENT_ERROR',
+          data: {
+            error: 'Missing required attribute for new Item. Make sure the item has text and listID attributes.'
+          }
+        })
+      }
+
       const todo = createTodo(data)
 
       fakeDB.todos.push(todo)
