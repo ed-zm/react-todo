@@ -26,3 +26,107 @@ Application to be used to test some skills. It is not required to know most of t
 4. `npm run dev`
 5. Check out `http://localhost:3000`
 6. Have fun!
+
+## API
+
+Everything is saved automatically via redux-storage on browser localStorage. There is a fake API on `src/config/api`, where you will find the following endpoints with the responses:
+
+**`GET /todos`**
+
+    200 OK
+
+    {
+      ok: true,
+      problem: "NONE",
+      data: {
+        todos: [
+          {
+            id: "41701948-7d3c-457d-8b06-7293b24309b3",
+            createdAt: "2016-12-06T06:08:40.447Z",
+            completed: true,
+            listID: "def456",
+            ...and any other list attributes you want
+          },
+          {
+            id: "60d0ec43-f9a1-44ce-b20b-ae8578737045",
+            createdAt: "2016-12-06T06:08:27.939Z",
+            completed: false,
+            listID: "abc123",
+            ...and any other list attributes you want
+          }
+        ]
+      }
+    }
+
+**`GET /todos/:id`**
+
+    200 OK
+
+    {
+      ok: true,
+      problem: "NONE",
+      data: {
+        todo: [
+          {
+            id: "41701948-7d3c-457d-8b06-7293b24309b3",
+            createdAt: "2016-12-06T06:08:40.447Z",
+            completed: true,
+            listID: "def456",
+            ...and any other list attributes you want
+          }
+        ]
+      }
+    }
+
+
+**`GET /lists/:id`**
+
+    200 OK
+
+    {
+      ok: true,
+      problem: "NONE",
+      data: {
+        list: [
+          {
+            id: "abc123",
+            createdAt: "2016-12-06T06:08:40.447Z",
+            ...and any other list attributes you want,
+            todos: [
+              {
+                id: "41701948-7d3c-457d-8b06-7293b24309b3",
+                createdAt: "2016-12-06T06:08:40.447Z",
+                completed: true,
+                listID: "abc123 ",
+                ...and any other list attributes you want
+              }
+            ]
+          }
+        ]
+      }
+    }
+
+
+
+**`GET /lists`**
+
+    200 OK
+
+    {
+      ok: true,
+      problem: "NONE",
+      data: {
+        lists: [
+          {
+            id: "abc123",
+            createdAt: "2016-12-06T06:08:40.447Z",
+            ...and any other list attributes you want
+          },
+          {
+            id: "def456",
+            createdAt: "2016-12-06T06:08:50.447Z",
+            ...and any other list attributes you want
+          }
+        ]
+      }
+    }
