@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "kyt dev -C kyt.config.dev.js",
     "build": "kyt build",
-    "postinstall": "npm run build",
+    "heroku-postbuild": "npm run build",
     "start": "kyt start",
     "test": "kyt test",
     "test-watch": "kyt test -- --watch",
