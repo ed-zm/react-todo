@@ -14,8 +14,58 @@ const apiResponse = ({
 })
 
 const api = {
+  get: (path) => {
+    const id = path.split('/')[2]
+
+    let data
+    if (typeof id === 'undefined') {
+      if (path.match(/lists/g)) {
+        data = {lists: fakeDB.lists}
+      } else {
+        data = {todos: fakeDB.todos}
+      }
+    } else {
+      if (path.match(/lists/g)) {
+        let list = fakeDB.lists.find(i => i.id === id)
+
+        if (typeof list === 'undefined') {
+          return apiResponse({
+            ok: false,
+            problem: 'CLIENT_ERROR',
+            data: {
+              error: 'List not found'
+            }
+          })
+        }
+
+        data = {
+          list: {
+            ...list,
+            todos: fakeDB.todos.filter(todo => todo.listID === list.id)
+          }
+        }
+      } else {
+        let todo = fakeDB.todos.find(i => i.id === id)
+
+        if (typeof todo === 'undefined') {
+          return apiResponse({
+            ok: false,
+            problem: 'CLIENT_ERROR',
+            data: {
+              error: 'Item not found'
+            }
+          })
+        }
+
+        data = { todo }
+      }
+    }
+
+    return apiResponse({ data })
+  },
+
   post: (path, data) => {
-    if (path.match(/list/g)) {
+    if (path.match(/lists/g)) {
       const list = createList(data)
 
       fakeDB.lists.push(list)
