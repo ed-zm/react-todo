@@ -2,7 +2,7 @@
 
 Application to be used to test some skills. It is not required to know most of the toolset below before making this test -- you need to know basically JS, ReactJS and Redux (flux) and you are good to go.
 
-[Live demo](https://sc-react-test.herokuapp.com)
+[Live demo](https://sc-react-test.herokuapp.com) (it can take some time to load if it isn’t acessed for some time)
 
 ## App Toolset
 
