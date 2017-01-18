@@ -12,16 +12,17 @@
     "node": "^6.4.0"
   },
   "scripts": {
-    "dev": "kyt dev -C kyt.config.dev.js",
-    "build": "kyt build",
-    "start": "npm run build && kyt start",
-    "test": "kyt test",
-    "test-watch": "kyt test -- --watch",
-    "test-coverage": "kyt test -- --coverage",
-    "lint": "kyt lint",
-    "lint-style": "kyt lint-style",
-    "proto": "kyt proto",
-    "kyt:help": "kyt --help"
+    "dev": "./node_modules/.bin/kyt dev -C kyt.config.dev.js",
+    "build": "./node_modules/.bin/kyt build",
+    "postinstall": "npm run build",
+    "start": "./node_modules/.bin/kyt start",
+    "test": "./node_modules/.bin/kyt test",
+    "test-watch": "./node_modules/.bin/kyt test -- --watch",
+    "test-coverage": "./node_modules/.bin/kyt test -- --coverage",
+    "lint": "./node_modules/.bin/kyt lint",
+    "lint-style": "./node_modules/.bin/kyt lint-style",
+    "proto": "./node_modules/.bin/kyt proto",
+    "kyt:help": "./node_modules/.bin/kyt --help"
   },
   "dependencies": {
     "babel-preset-stage-2": "^6.18.0",
