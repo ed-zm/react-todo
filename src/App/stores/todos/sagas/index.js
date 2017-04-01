@@ -14,6 +14,7 @@ import * as schema from '../schema'
  */
 
 export function* receiveResponse (response) {
+    console.log(response)
   if (response.ok) {
     const todo = normalize(response.data.todo, schema.todo)
 

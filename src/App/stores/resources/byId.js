@@ -15,10 +15,12 @@ export default (type) => createReducer({
   initialState: defaultState,
 
   [t.SET_ENTITIES]: (state, {payload: { entities }}) => {
+      debugger
     if (isEmpty(entities[type])) {
       return state
     }
-
+    console.log("entities")
+    debugger
     return {...state, ...entities[type]}
   },
 
@@ -101,5 +103,4 @@ export default (type) => createReducer({
     return defaultState
   }
 })
-
 export const getEntity = createSelector((state, id) => state[id], entity => entity)

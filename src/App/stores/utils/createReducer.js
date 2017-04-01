@@ -32,6 +32,7 @@ export default (reducerMap, initialState) => {
   }
 
   return (state = initialState, action) => {
+
     const reducer = action && reducerMap[action.type]
     return reducer ? reducer(state, action) : state
   }

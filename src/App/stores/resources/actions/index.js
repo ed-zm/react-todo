@@ -6,6 +6,8 @@ export const setEntities = createAction('resources/SET_ENTITIES', p => p, (p, m)
 export const removeEntity = createAction('resources/REMOVE_ENTITY', p => p, (p, m) => m)
 export const removeEntities = createAction('resources/REMOVE_ENTITIES', p => p, (p, m) => m)
 
+export const filterEntity = createAction('resources/FILTER_ENTITY', p => p, (p, m) => m)
+
 export const fetchEntity = createAction('resources/FETCH_ENTITY', p => p, (p, m) => m)
 export const fetchEntities = createAction('resources/FETCH_ENTITIES', p => p, (p, m) => m)
 
