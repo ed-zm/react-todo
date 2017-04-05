@@ -16,7 +16,7 @@ import configureStore from 'config/store'
 
 import html from './Templates'
 
-const port = parseInt(KYT.SERVER_PORT, 10) || process.env.PORT
+const port = process.env.PORT || parseInt(KYT.SERVER_PORT, 10)
 const clientAssets = require(KYT.ASSETS_MANIFEST)
 const app = express()
 
