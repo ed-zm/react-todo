@@ -14,10 +14,8 @@ import * as schema from '../schema'
  */
 
 export function* receiveResponse (response) {
-    console.log(response)
   if (response.ok) {
     const todo = normalize(response.data.todo, schema.todo)
-
     yield put(actions.setEntity(todo, {type: 'todos'}))
   } else {
     const error = response.data.error
@@ -31,10 +29,8 @@ export function* addTodo () {
     const action = yield take(t.SUBMIT_ENTITY)
     if (action.meta && action.meta.type === 'todos') {
       const todo = {
-        ...action.payload,
-        listID: 1 // Change this to support multiple lists
+        ...action.payload
       }
-
       const response = yield call(api.post, '/todos', {...todo})
 
       yield fork(receiveResponse, response)

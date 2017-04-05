@@ -8,28 +8,56 @@ const sortByDate = (arr) => arr.sort((a, b) => {
   return new Date(b.createdAt) - new Date(a.createdAt)
 })
 
-const TodoList = ({ todos, toggleTodo }) => {
-  const sortedTodos = todos && todos[0] ? sortByDate(todos) : null
+const TodoList = ({ todoOne, todoTwo, toggleTodo, id }) => {
+    if ( id === 1) {
+      const sortedTodos = todoOne && todoOne[0] ? sortByDate(todoOne) : null
 
-  return (
-    <ul className='list pl0 ml0 center mw6 ba b--light-silver br2'>
-      {sortedTodos
-        ? todos.map((todo, i) =>
-          <Todo
-            key={i}
-            {...todo}
-            toggle={() => toggleTodo(todo, !todo.completed)}
-            isLast={(todos.length - 1) === i}
-          />
-        )
-        : <p className='ph3 pv3 tc'>No todos found</p>
-      }
-    </ul>
-  )
+      return (
+        <ul className='list pl0 ml0 center mw6 ba b--light-silver br2 dib w-100'>
+          {sortedTodos
+            ? todoOne.map((todo, i) =>{
+
+                return(
+                  <Todo
+                    key={i}
+                    {...todo}
+                    toggle={() => toggleTodo(todo, !todo.completed)}
+                    isLast={(todoOne.length - 1) === i}
+                    />)
+
+            })
+            : <p className='ph3 pv3 tc'>No todos Found found</p>
+          }
+        </ul>
+      )
+  } else {
+      const sortedTodos = todoTwo && todoTwo[0] ? sortByDate(todoTwo) : null
+
+      return (
+        <ul className='list pl0 ml0 center mw6 ba b--light-silver br2 dib w-100'>
+          {sortedTodos
+            ? todoTwo.map((todo, i) =>{
+
+                return(
+                  <Todo
+                    key={i}
+                    {...todo}
+                    toggle={() => toggleTodo(todo, !todo.completed)}
+                    isLast={(todoTwo.length - 1) === i}
+                    />)
+
+            })
+            : <p className='ph3 pv3 tc'>No todos Found found</p>
+          }
+        </ul>
+      )
+  }
+
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array
+  todoOne: PropTypes.array,
+  todoTwo: PropTypes.array
 }
 
 export default TodoList

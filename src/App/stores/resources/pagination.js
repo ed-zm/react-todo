@@ -56,7 +56,7 @@ export default (type) => createReducer({
     }
 
     if (typeof current === 'undefined' || isNaN(current)) {
-      throw new Error('"current" from pagination state must be a number')
+      throw new Error("'current' from pagination state must be a number'")
     }
 
     return {
@@ -76,15 +76,15 @@ export default (type) => createReducer({
 
 function validatePage (page) {
   if (typeof page.totalEntities === 'undefined' || isNaN(page.totalEntities)) {
-    throw new Error('"meta.page" object must have a "totalEntities" key with a number as value')
+    throw new Error("'meta.page' object must have a 'totalEntities' key with a number as value'")
   }
 
   if (typeof page.perPage === 'undefined' || isNaN(page.perPage)) {
-    throw new Error('"meta.page" object must have a "perPage" key with a number as value')
+    throw new Error("'meta.page' object must have a 'perPage' key with a number as value'")
   }
 
   if (typeof page.current === 'undefined' || isNaN(page.current)) {
-    throw new Error('"meta.page" object must have a "current" key with a number as value')
+    throw new Error("meta.page' object must have a 'current' key with a number as value'")
   }
 
   let newPage = {}

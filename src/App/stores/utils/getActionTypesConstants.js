@@ -7,7 +7,7 @@ import snakeCase from 'lodash/snakeCase'
  * redux-actions createAction to a object with these
  * functions names as action types
  *
- * "someAction" becomes "SOME_ACTION"
+ * 'someAction' becomes 'SOME_ACTION'
  *
  * @param  {Object} actions Object with action creators
  * @return {Object}         Object with action types constants

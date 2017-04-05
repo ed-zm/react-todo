@@ -1,8 +1,8 @@
 /*
   This is a combination of some generic reducers
-  which can be used with any "resource".
+  which can be used with any 'resource'.
 
-  A "resource" is a model of data that is usually
+  A 'resource' is a model of data that is usually
   fetched from the API.
  */
 
@@ -14,6 +14,7 @@ import idsList, * as fromIdsList from './idsList'
 import status, * as fromStatus from './status'
 import pagination, * as fromPagination from './pagination'
 import filterList, * as fromFilterList from './filterList'
+import setActive, * as fromSetActive from './setActive'
 
 
 export default (type) => combineReducers({
@@ -21,36 +22,58 @@ export default (type) => combineReducers({
   idsList: idsList(type),
   status: status(type),
   pagination: pagination(type),
-  filterList: filterList(type)
+  filterList: filterList(type),
+  setActive: setActive(type)
 })
 // Get one item in a state of this reducer
 export const getEntity = (type, id) => createSelector(
   state => fromById.getEntity(state[type].byId, id),
   entity => { if (entity){
-      debugger
       return entity} }
 )
 
 // Get all items in a state of this reducer
-export const getEntities = (type) => createSelector(
+export const getEntitiesOne = (type) => createSelector(
   state => state,
   state => fromIdsList.getIds(state[type].idsList),
   state => fromFilterList.getFilter(state[type].filterList),
   (state, entitiesIds, filterParam) => {
-      if (entitiesIds) {
-          if(filterParam == false){
-              let entities = entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
-              return entities.filter(entity => entity.completed == false)
+      if (entitiesIds){
+          let entities = entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
+          if (filterParam === false){
+              return entities.filter(entity => entity.completed === false && entity.listID === 1)
           }
-          else if(filterParam == true){
-              console.log("activo")
-              let entities = entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
-              return entities.filter(entity => entity.completed == true)
+          else if (filterParam === true){
+              return entities.filter(entity => entity.completed === true && entity.listID === 1)
           }
-          return entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
+              return entities.filter(entity => entity.listID ===  1)
       }
   }
 )
+
+export const getEntitiesTwo = (type) => createSelector(
+  state => state,
+  state => fromIdsList.getIds(state[type].idsList),
+  state => fromFilterList.getFilter(state[type].filterList),
+  (state, entitiesIds, filterParam) => {
+      if (entitiesIds){
+          let entities = entitiesIds.map(id => fromById.getEntity(state[type].byId, id))
+          if (filterParam === false){
+              return entities.filter(entity => entity.completed === false && entity.listID === 2)
+          }
+          else if (filterParam === true){
+              return entities.filter(entity => entity.completed === true && entity.listID === 2)
+          }
+              return entities.filter(entity => entity.listID === 2)
+      }
+  }
+)
+
+export const getActive = (type) => createSelector(
+    state => state,
+    state => fromSetActive.getActive(state[type].setActive)
+)
+
 
 // Get child entities by its parent ID
 export const getChildEntities = (childType, parentType, parentId) => createSelector(
